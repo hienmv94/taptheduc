@@ -1,0 +1,52 @@
+#navigator{
+	background-color: #006633;
+	width:100%;
+	height:50px;
+	position: relative;
+}
+
+.logo{
+	width:150px;
+	margin-left:20px;
+	position: absolute;
+}
+.logo .home{
+	font-family: RobotoCondensed;
+	font-size: 26px;
+	color: white;
+	line-height:2;
+}
+
+.login {
+	float: right;
+	line-height: 3;
+}
+
+.login a{
+	color: white;
+}
+
+.inputSearch{
+	width: 490px;
+	margin-left: 400px;
+    border-radius: 100px;
+	position:absolute;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+}
+
+.inputSearch .textSearch{
+	height:34px;
+	margin-top:6px;
+	line-height:18px;
+	font-size:16px;
+    border: 0;
+    width: 450px;
+}
+
+.inputSearch .searchButton{
+	position:absolute;
+	top:27%;
+	margin-left:-17px;
+}
