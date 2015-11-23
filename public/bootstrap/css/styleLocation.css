@@ -1,0 +1,39 @@
+@font-face{
+	font-family: RobotoCondensed;
+	src: url(../fonts/Roboto-Condensed.ttf);
+}
+html, body{
+	font-family: RobotoCondensed;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	background-color: #CDCFD2;
+	position: relative;
+}
+
+p{
+	line-height: 2;
+	font-size: 14px;
+	text-align: justify;
+}
+a{
+	text-decoration: none;
+}
+.col-sm-7{
+	margin-left: 200px;
+}
+.col-sm-7 p{
+	color: #330033;
+	font-size: 18px;
+}
+.col-sm-7 > tr > th{
+	text-align: center;
+}
+
+td:nth-child(2){
+	text-align: center;
+}
+td:nth-child(3){
+	text-align: center;
+}
