@@ -34,7 +34,7 @@
 					 @else 
 					 <span style="font-family: Arial Unicode MS, Lucida	Grande; color:#FF0000; font-size: 24px;"> &#33;</span>
 					 @endif </td>
-					<td><a href="">Chi tiết</a></td>
+					<td><a href="{{asset('admin/'.$loc->id.'/update')}}">Chi tiết</a></td>
 				</tr>
 			@endforeach
 			</tbody>

@@ -1,0 +1,70 @@
+@font-face{
+	font-family: RobotoCondensed;
+	src: url(../fonts/Roboto-Condensed.ttf);
+}
+html, body{
+	font-family: RobotoCondensed;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+	background-color: #CDCFD2;
+	position: relative;
+}
+
+p{
+	line-height: 2;
+	font-size: 14px;
+	text-align: justify;
+}
+a{
+	text-decoration: none;
+}
+.container-fluid #info{
+	background-color: white;
+	position: absolute;
+	margin-left: 70px;
+}
+
+#coverMap{
+	float: right;
+	background-color: white;
+}
+
+#coverMap #onlyMap{
+	height:300px;
+}
+
+.name{
+	font-size: 24px;
+	color: bold;
+}
+
+.info{
+	background-color: #CDCFD2;
+}
+
+.title{
+	
+}
+
+.slide img{
+	width: 642px;
+	height: 300px;
+}
+.about{
+	background-color: #CDCFD2;
+	margin-top: 20px;
+}
+
+
+.price{
+	background-color: #CDCFD2;
+}
+.sale{
+	background-color: #CDCFD2;
+}
+
+.fb-comments{
+    
+}

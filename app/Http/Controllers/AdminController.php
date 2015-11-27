@@ -66,7 +66,9 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = new Location;
+        $location= $location->findId($id)->first();
+        return view('admin.detail',compact('location'));
     }
 
     /**
@@ -77,7 +79,10 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location=new Location;
+        $location= $location->findId($id)->first();
+        $category=Category::all();
+        return view('admin.update',compact('location','category'));
     }
 
     /**
@@ -89,7 +94,19 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input= $request->all();
+        $data= array(
+            'name'=>$input['name'],
+            'address'=>$input['address'],
+            'contact'=>$input['contact'],
+            'describe'=>$input['describe'],
+            'sale'=>$input['sale'],
+            'price'=>$input['price'],
+            'category_id'=>$input['category_id'],
+            'area'=>$input['area'],
+        );
+        Location::find($id)->update($data);
+        return Redirect::back();
     }
 
     /**

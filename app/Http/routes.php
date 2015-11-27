@@ -19,3 +19,6 @@ Route::get('/admin','AdminController@index');
 Route::get('/admin/add','AdminController@create');
 Route::post('/admin/add','AdminController@store');
 Route::get('/admin/action','AdminController@action');
+Route::get('/admin/{id}/update','AdminController@edit');
+Route::post('/admin/{id}/update','AdminController@update');
+Route::get('/admin/{id}','AdminController@show');

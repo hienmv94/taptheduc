@@ -60,6 +60,7 @@
 						</td>
 					</tr>
 				</table>
+				<a href="{{asset('admin')}}">Trang chủ</a>
 			</form>
 		</div>
 	</div>
