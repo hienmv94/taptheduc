@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 	<div class="main">
-	<h2 style="margin-left:200px">Thêm Địa Điểm Mới</h2> 
+	<h2 style="margin-left:200px">Cập nhật địa điểm</h2> 
 		<div class="main">
 			<form action="" method="post" enctype="multipart/form-data" action="{{asset('/admin/'.$location->id.'/update')}}" >
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -53,19 +53,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td><label for="fileAnh">Ảnh:</label></td>
-						<td><input type="file" class="form-control" name="fileAnh" id="fileAnh"></td>
-					</tr>
-					<tr>
 						<td>&nbsp;</td>
 						<td>
-							<input type="submit" value="Xác nhận" id="btnSubmit" name="btnSubmit" >
-							<input type="reset" value="Nhập lại">
+							<input type="submit" value="Xác nhận" id="btnSubmit" name="btnSubmit" class="btn btn-success">
+							<input type="reset" value="Nhập lại" class="btn btn-danger">
+							<a href="{{asset('admin/'.$location->id.'/images')}}" class="btn btn-primary">Ảnh</a>
 						</td>
 					</tr>
 
 				</table>
-				<a href="{{asset('admin')}}" class="btn btn-success">Trang chủ</a>
+				<a href="{{asset('admin')}}" class="btn btn-success">Quay lại trang quản lý</a>
 			</form>
 		</div>
 	</div>

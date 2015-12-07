@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Contracts\Factory as Socialite;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\FacebookHelper;
+use Session;
+use App\Facebook;
+use App\Google;
+use Config;
 
 class AuthController extends Controller
 {
@@ -21,45 +27,52 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
+    
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
+     * return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest', ['except' => 'getLogout']);
+    
+
+    public function loginFacebook(){
+        Session::put('redirectPath','auth/callback/facebook');
+        return redirect('getcode/facebook');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+    public function postLoginFacebook(){
+        $accessToken = session('facebook_access_token');
+        $fb = new Facebook;
+        $userFB = $fb->getUserInfo('id,name,email',$accessToken);
+        $test = new User;
+        if(!$test->findEmail($userFB->email)) {
+            $user = new User;
+            $user->name=$userFB->name;
+            $user->email=$userFB->email;
+            $user->save();
+        }
+        return view('index')->with('user',$userFB);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+    public function loginGoogle(){
+        Session::put('redirectPath','auth/callback/google');
+        return redirect('getcode/google');
     }
+
+    public function postLoginGoogle(){
+        $accessToken = session('google_access_token');
+        $gg = new Google;
+        $userGG = $gg->getUserInfo($accessToken);
+        $test = new User;
+        if(!$test->findEmail($userGG->email)) {
+            $user = new User;
+            $user->name=$userGG->name;
+            $user->email=$userGG->email;
+            $user->save();
+        }
+       return view('index')->with('user',$userGG);
+    }
+
+
 }

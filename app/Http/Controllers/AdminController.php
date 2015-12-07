@@ -9,7 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Location;
 use App\Category;
 use Redirect;
-use DB;
+use DB,Input;
+use App\Image;
 
 class AdminController extends Controller
 {
@@ -46,8 +47,10 @@ class AdminController extends Controller
     {
         $input = $request->all();
         $location = new Location;
+        $link=stripUnicode($input['name']);
         $location->name=$input['name'];
         $location->address=$input['address'];
+        $location->link=stripUnicode($input['name']).'_'.stripUnicode($input['address']);
         $location->contact=$input['contact'];
         $location->category_id=$input['category_id'];
         $location->area=$input['area'];
@@ -55,8 +58,22 @@ class AdminController extends Controller
         $location->describe=$input['describe'];
         $location->price=$input['price'];
         $location->save();
-        return Redirect::to('admin');
-    }
+        foreach ($input['fileAnh'] as $anh){
+
+            if ($anh) {
+               $image= new Image;
+               $save_up= 'public/images/';
+               $_avatar= $location->link;
+               $_avatar=rand(0,1000).stripUnicode($_avatar).'.jpg';
+               $image->location_id=$location->id;
+               $image->link=$save_up.$_avatar;
+               $anh->move($save_up, $_avatar);
+               $image->save();
+           }
+
+       }
+       return Redirect::to('admin');
+   }
 
     /**
      * Display the specified resource.
@@ -68,7 +85,9 @@ class AdminController extends Controller
     {
         $location = new Location;
         $location= $location->findId($id)->first();
-        return view('admin.detail',compact('location'));
+        $picture= new Image;
+        $picture= $picture->findId($id)->get();
+        return view('admin.detail',compact('location','picture'));
     }
 
     /**
@@ -98,13 +117,15 @@ class AdminController extends Controller
         $data= array(
             'name'=>$input['name'],
             'address'=>$input['address'],
+            'link'=>stripUnicode($input['name']).'_'.stripUnicode($input['address']),
             'contact'=>$input['contact'],
             'describe'=>$input['describe'],
             'sale'=>$input['sale'],
             'price'=>$input['price'],
             'category_id'=>$input['category_id'],
             'area'=>$input['area'],
-        );
+            'actived' => '0',
+            );
         Location::find($id)->update($data);
         return Redirect::back();
     }
@@ -137,5 +158,41 @@ class AdminController extends Controller
             }
             return Redirect::to('/admin');
         }
+    }
+
+    public function editImage($id){
+        $images = new Image;
+        $images = $images->findId($id)->get();
+        $location=new Location;
+        $location= $location->findId($id)->first();
+        return view('admin.updateImage',compact('images','id','location'));
+    }
+
+    public function updateImage(Request $request,$id){
+        $input=$request->all();
+        if (isset($input['btnSubmit'])){
+        
+        $location=new Location;
+        $location= $location->findId($id)->first();
+        foreach ($input['fileAnh'] as $anh){
+
+            if ($anh) {
+               $image= new Image;
+               $save_up= 'public/images/';
+               $_avatar= $location->link;
+               $_avatar=rand(0,1000).stripUnicode($_avatar).'.jpg';
+               $image->location_id=$location->id;
+               $image->link=$save_up.$_avatar;
+               $anh->move($save_up, $_avatar);
+               $image->save();
+           }
+
+        }} else {
+            $id_xoa=$input['checkbox'];
+            foreach ($id_xoa as $id) {
+                $result=DB::table('images')->where('image_id',$id)->delete();
+            }
+        }
+        return Redirect::back();
     }
 }

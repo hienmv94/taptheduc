@@ -15,10 +15,11 @@
 					<th>Tên</th>
 					<th>Địa chỉ</th>
 					<th>Liên hệ</th>
-					<th>Diện tích</th>
+					<th style="width:100px">Diện tích(m2)</th>
 					<th>Mục</th>
 					<th>Trạng thái</th>
 					<th>Xem</th>
+					<th>Sửa</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,7 +35,8 @@
 					 @else 
 					 <span style="font-family: Arial Unicode MS, Lucida	Grande; color:#FF0000; font-size: 24px;"> &#33;</span>
 					 @endif </td>
-					<td><a href="{{asset('admin/'.$loc->id.'/update')}}">Chi tiết</a></td>
+					<td><a href="{{asset('admin/'.$loc->id)}}">Chi tiết</a></td>
+					<td style="width:50px"><a href="{{asset('admin/'.$loc->id.'/update')}}">Cập nhật</a></td>
 				</tr>
 			@endforeach
 			</tbody>

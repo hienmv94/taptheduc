@@ -6,16 +6,16 @@
 	<div class="main">
 	<h2 style="margin-left:200px">Thêm Địa Điểm Mới</h2> 
 		<div class="main">
-			<form action="" method="post" enctype="multipart/form-data" action="{{asset('/admin/add')}}" >
+			<form method="post" enctype="multipart/form-data" action="{{asset('/admin/add')}}" >
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<table class="tblDangky">
 					<tr>
 						<td><label for="name">Tên địa điểm:</label></td>
-						<td><input type="text" name="name" id="name" placeholder="Nhập tên địa điểm" ></td>
+						<td><input type="text" name="name" id="name" placeholder="Nhập tên địa điểm" required></td>
 					</tr>
 					<tr>
 						<td><label for="address">Địa chỉ:</label></td>
-						<td><input type="text" name="address" id="address" placeholder="Nhập địa chỉ"></td>
+						<td><input type="text" name="address" id="address" placeholder="Nhập địa chỉ" required></td>
 					</tr>
 					<tr>
 						<td><label for="contact">Điện thoại:</label></td>
@@ -50,7 +50,7 @@
 					</tr>
 					<tr>
 						<td><label for="fileAnh">Ảnh:</label></td>
-						<td><input type="file" name="fileAnh" id="fileAnh"></td>
+						<td><input type="file" name="fileAnh[]" id="fileAnh" multiple></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
