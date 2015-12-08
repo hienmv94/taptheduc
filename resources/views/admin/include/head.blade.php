@@ -1,5 +1,5 @@
 <head>
-	@yield('title')
+	<title>@yield('title')</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<link href="{{asset('public/bootstrap/css/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" type="text/css" href="{{asset('public/bootstrap/css/bootstrap.min.css')}}">

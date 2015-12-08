@@ -52,7 +52,8 @@ class AuthController extends Controller
             $user->save();
         }
         Session::put('user_name',$userFB->name);
-        return view('home');
+        Session::put('user_email',$userFB->email);
+        return redirect('');
     }
 
 
@@ -73,11 +74,13 @@ class AuthController extends Controller
             $user->save();
         }
         Session::put('user_name',$userGG->name);
-        return view('home');
+        Session::put('user_email',$userGG->email);
+        return redirect('/');
     }
 
     public function logout(){
         Session::forget('user_name');
-        return view('home');
+        Session::forget('user_email');
+        return redirect('');
     }
 }

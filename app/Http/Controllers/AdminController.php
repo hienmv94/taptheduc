@@ -11,9 +11,13 @@ use App\Category;
 use Redirect;
 use DB,Input;
 use App\Image;
+use App\User;
 
 class AdminController extends Controller
 {
+    public function __construct(){
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +61,9 @@ class AdminController extends Controller
         $location->sale=$input['sale'];
         $location->describe=$input['describe'];
         $location->price=$input['price'];
+        $user= new User;
+        $user= $user->findEmail(session('user_email'));
+        $location->user_id=$user->id;
         $location->save();
         foreach ($input['fileAnh'] as $anh){
 

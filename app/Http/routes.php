@@ -11,23 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
+
+Route::group(array('before' => 'admin'), function(){
+	Route::get('/admin','AdminController@index');
+	Route::get('/admin/add','AdminController@create');
+	Route::post('/admin/add','AdminController@store');
+	Route::get('/admin/action','AdminController@action');
+	Route::get('/admin/{id}/update','AdminController@edit');
+	Route::post('/admin/{id}/update','AdminController@update');
+	Route::get('/admin/{id}','AdminController@show');
+	Route::get('/admin/{id}/images','AdminController@editImage');
+	Route::post('/admin/{id}/images','AdminController@updateImage');
 });
-
-Route::get('/admin','AdminController@index');
-Route::get('/admin/add','AdminController@create');
-Route::post('/admin/add','AdminController@store');
-Route::get('/admin/action','AdminController@action');
-Route::get('/admin/{id}/update','AdminController@edit');
-Route::post('/admin/{id}/update','AdminController@update');
-Route::get('/admin/{id}','AdminController@show');
-Route::get('/admin/{id}/images','AdminController@editImage');
-Route::post('/admin/{id}/images','AdminController@updateImage');
-
-Route::get('/quanlydiadiem', 'HomeController@index');
-Route::post('/timkiem','HomeController@search');
-Route::get('/ketqua','HomeController@result');
 
 // login with Facebook
 Route::get('facebook/login','Auth\AuthController@loginFacebook');
@@ -45,3 +40,20 @@ Route::get('/callback/google','GoogleController@saveAccessToken');
 // logout
 
 Route::get('logout','Auth\AuthController@logout');
+
+//nguoi dung
+Route::get('/', 'HomeController@index');
+Route::get('/quanlydiadiem', 'HomeController@manager');
+Route::post('/timkiem','HomeController@search');
+Route::get('/ketqua','HomeController@result');
+Route::get('/themdiadiem','HomeController@create');
+Route::post('/themdiadiem','HomeController@store');
+
+Route::get('/diadiem/{id}','HomeController@show');
+
+
+
+	Route::get('/diadiem/{id}/capnhat','HomeController@edit');
+	Route::post('/diadiem/{id}/capnhat','HomeController@update');
+	Route::get('/diadiem/{id}/anh','HomeController@editImage');
+	Route::post('/diadiem/{id}/anh','HomeController@updateImage');

@@ -1,4 +1,4 @@
-@extends('admin.include.main')
+@extends('user.include.main')
 @section('title')
 Thông tin chi tiết
 @stop
@@ -11,7 +11,7 @@ Thông tin chi tiết
 					@include('admin.detail.slide')
 					<br>
 					@include('admin.detail.information')
-					<a class="btn btn-success" href="{{asset('admin/'.$location->id.'/update')}}">Cập nhật</a>
+					<a class="btn btn-success" href="{{asset('diadiem/'.$location->id.'/capnhat')}}">Cập nhật</a>
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 				@include('admin.detail.map')

@@ -1,4 +1,4 @@
-@extends('admin.include.main')
+@extends('user.include.main')
 @section('title')
 Tập thể dục | Quản lý địa điểm
 @endsection
@@ -35,15 +35,14 @@ Tập thể dục | Quản lý địa điểm
 					 @else 
 					 <span style="font-family: Arial Unicode MS, Lucida	Grande; color:#FF0000; font-size: 24px;"> &#33;</span>
 					 @endif </td>
-					<td><a href="{{asset('admin/'.$loc->id)}}">Chi tiết</a></td>
-					<td style="width:50px"><a href="{{asset('admin/'.$loc->id.'/update')}}">Cập nhật</a></td>
+					<td><a href="{{asset('diadiem/'.$loc->id)}}">Chi tiết</a></td>
+					<td style="width:50px"><a href="{{asset('diadiem/'.$loc->id.'/capnhat')}}">Cập nhật</a></td>
 				</tr>
 			@endforeach
 			</tbody>
 		</table>
-		<a href="{{asset('admin/add')}}" class="btn btn-primary">Thêm</a>
+		<a href="{{asset('themdiadiem')}}" class="btn btn-primary">Thêm</a>
 		<input type="submit" value="Xóa" name="delete" class="btn btn-danger">
-		<input type="submit" value="Kích hoạt" name="active" class="btn btn-default">
 		</form>
 	</div>
 </div> 

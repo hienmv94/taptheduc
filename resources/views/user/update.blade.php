@@ -1,4 +1,4 @@
-@extends('admin.include.main')
+@extends('user.include.main')
 @section('title')
 	Cập nhật địa điểm
 @endsection
@@ -57,12 +57,12 @@
 						<td>
 							<input type="submit" value="Xác nhận" id="btnSubmit" name="btnSubmit" class="btn btn-success">
 							<input type="reset" value="Nhập lại" class="btn btn-danger">
-							<a href="{{asset('admin/'.$location->id.'/images')}}" class="btn btn-primary">Ảnh</a>
+							<a href="{{asset('diadiem/'.$location->id.'/anh')}}" class="btn btn-primary">Ảnh</a>
 						</td>
 					</tr>
 
 				</table>
-				<a href="{{asset('admin')}}" class="btn btn-success">Quay lại trang quản lý</a>
+				<a href="{{asset('quanlydiadiem')}}" class="btn btn-success">Quay lại trang quản lý</a>
 			</form>
 		</div>
 	</div>
