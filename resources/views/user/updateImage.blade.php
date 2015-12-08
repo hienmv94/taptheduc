@@ -1,4 +1,4 @@
-@extends('admin.include.main')
+@extends('user.include.main')
 @section('title')
 Cập nhật địa điểm
 @endsection
@@ -6,7 +6,7 @@ Cập nhật địa điểm
 <div class="main">
 	<h2 style="margin-left:200px">Cập nhật ảnh</h2> 
 	<div class="main">
-		<form method="post" enctype="multipart/form-data" action="{{asset('/admin/'.$id.'/images')}}" >
+		<form method="post" enctype="multipart/form-data" action="{{asset('/diadiem/'.$id.'/anh')}}" >
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<h2>{{$location->name}}</h2>
 			@if($images->first())
@@ -26,7 +26,7 @@ Cập nhật địa điểm
 			<input type="file" name="fileAnh[]" id="fileAnh" multiple class="form-control">
 			<input type="submit" value="Xác nhận" id="btnSubmit" name="btnSubmit" class="btn btn-primary">
 			<input type="submit" value="Xóa" name="delete" class="btn btn-danger">
-			<a href="{{asset('admin/'.$location->id)}}" class="btn btn-success">Chi tiết</a>
+			<a href="{{asset('diadiem/'.$location->id)}}" class="btn btn-success">Chi tiết</a>
 		</form>
 	</div>
 </div>

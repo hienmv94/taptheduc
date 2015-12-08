@@ -40,10 +40,6 @@ class User extends Model implements AuthenticatableContract,
 
     public function findEmail($string){
         $query=DB::table('users')->where('email',$string)->first();
-        if ($query){
-            return 1;
-        } else {
-            return 0;
-        }
+        return $query;
     }
 }

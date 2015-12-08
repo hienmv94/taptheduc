@@ -1,4 +1,4 @@
-@extends('admin.include.main')
+@extends('user.include.main')
 @section('title')
 	Thêm địa điểm
 @stop
@@ -6,7 +6,7 @@
 	<div class="main">
 	<h2 style="margin-left:200px">Thêm Địa Điểm Mới</h2> 
 		<div class="main">
-			<form method="post" enctype="multipart/form-data" action="{{asset('/admin/add')}}" >
+			<form method="post" enctype="multipart/form-data" action="{{asset('/themdiadiem')}}" >
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<table class="tblDangky">
 					<tr>

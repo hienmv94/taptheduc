@@ -46,4 +46,12 @@ class Location extends Model
         }
         return $location;
     }
+
+    public function myLocation($user_email){
+        $location = DB::table('location')->join('users','users.id','=','location.user_id')
+        ->join('category', 'location.category_id', '=', 'category.category_id')
+        ->select('location.*','category.category_name as category_name')
+        ->where('users.email',$user_email)->get();
+        return $location;
+    }
 }
