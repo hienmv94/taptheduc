@@ -51,7 +51,8 @@ class AuthController extends Controller
             $user->email=$userFB->email;
             $user->save();
         }
-        return view('index')->with('user',$userFB);
+        Session::put('user_name',$userFB->name);
+        return view('home');
     }
 
 
@@ -71,8 +72,12 @@ class AuthController extends Controller
             $user->email=$userGG->email;
             $user->save();
         }
-       return view('index')->with('user',$userGG);
+        Session::put('user_name',$userGG->name);
+        return view('home');
     }
 
-
+    public function logout(){
+        Session::forget('user_name');
+        return view('home');
+    }
 }
