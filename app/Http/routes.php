@@ -41,3 +41,7 @@ Route::get('google/login','Auth\AuthController@loginGoogle');
 Route::get('auth/callback/google','Auth\AuthController@postLoginGoogle');
 Route::get('/getcode/google','GoogleController@getCode');
 Route::get('/callback/google','GoogleController@saveAccessToken');
+
+// logout
+
+Route::get('logout','Auth\AuthController@logout');
