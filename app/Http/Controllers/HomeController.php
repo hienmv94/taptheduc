@@ -40,7 +40,8 @@ class HomeController extends Controller
         dd($location);
     }
     public function index(){
-        $location= Location::all();
+        $location= new Location;
+        $location = $location->viewAll()->get();
         return view('home',compact('location'));
     }
 
