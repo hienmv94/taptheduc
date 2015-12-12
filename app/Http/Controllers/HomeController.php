@@ -37,11 +37,12 @@ class HomeController extends Controller
         $input= session('input');
         $location= new Location;
         $location=$location->search($input['search'],$input['optionSort'],$input['optionSize'])->get();
-        dd($location);
+        return view('home',compact('location'));
     }
     public function index(){
         $location= new Location;
         $location = $location->viewAll()->get();
+
         return view('home',compact('location'));
     }
 

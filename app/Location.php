@@ -40,9 +40,11 @@ class Location extends Model
     public function searchPlace($key,$category){
         $diadiem=stripUnicode($key);
         if ($category!=0) {
-            $location=DB::table('location')->where('link','like','%'.$diadiem.'%')->where('category_id',$category)->where('actived','=',1);
+           $location = DB::table('location')->join('category', 'location.category_id', '=', 'category.category_id')
+        ->select('location.*','category.category_name as category_name','category.link as category_link')->where('location.link','like','%'.$diadiem.'%')->where('location.category_id',$category)->where('actived','=',1);
         } else {
-            $location=DB::table('location')->where('link','like','%'.$diadiem.'%')->where('actived','=',1);
+            $location = DB::table('location')->join('category', 'location.category_id', '=', 'category.category_id')
+        ->select('location.*','category.category_name as category_name','category.link as category_link')->where('location.link','like','%'.$diadiem.'%')->where('actived','=',1);
         }
         return $location;
     }
