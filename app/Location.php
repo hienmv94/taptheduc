@@ -13,7 +13,7 @@ class Location extends Model
 
     public function viewAll(){
     	$location = DB::table('location')->join('category', 'location.category_id', '=', 'category.category_id')
-    	->select('location.*','category.category_name as category_name');
+    	->select('location.*','category.category_name as category_name','category.link as category_link');
     	return $location;
     }
     public function findId($id){
