@@ -46,6 +46,9 @@ function initialize(){
 	
 	<?php
 		foreach($location as $loc) {
+			$link ='diadiem/'.$loc->id;
+			$describe = $loc->name."<br>Liên hệ :".$loc->contact.'<br><a href='.$link.' >Chi tiết</a>';
+
 	?>
 
 		var address = '<?php echo $loc->address; ?>';
@@ -55,7 +58,9 @@ function initialize(){
 		geocoder.geocode( { 'address': address}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				var image = '<?php echo $loc->category_link; ?>';
-		var describe = '<?php echo $loc->describe; ?>';
+				var name = '<?php echo $loc->name; ?>';
+				var describe = '<?php echo $describe; ?>';
+
 				lat = results[0].geometry.location.lat();
 				lng = results[0].geometry.location.lng();
 			       	var address_att = new google.maps.LatLng(lat, lng); // attitude's address
@@ -65,7 +70,7 @@ function initialize(){
 			       	var markerPool = new google.maps.Marker({
 			       		position: address_att,
 			       		map: map,
-						title:"My house!", // adress's name
+						title: name, // adress's name
 						icon: image
 					});
 			       	var infowindow = new google.maps.InfoWindow({

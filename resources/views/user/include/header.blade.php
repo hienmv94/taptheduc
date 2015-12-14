@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 <form method="POST" action="{{asset('/timkiem')}}">
 		<div id = "navigator">
 			
@@ -18,16 +22,34 @@
 
 			<div class = "login">
 				@if(session('user_name'))
-				@if(DB::table('users')->where('email',session('user_email'))->where('admin',1)->first())
-				<a href="{{asset('/admin')}}"> Quản lý</a>
-				@else
-				<a href="{{asset('/quanlydiadiem')}}"> Địa Điểm Của Tôi</a>
-				@endif
 				<b>{{session('user_name')}}</b>
+				@if(DB::table('users')->where('email',session('user_email'))->where('admin',1)->first())
+				<!-- <a href="{{asset('/admin')}}"> Quản lý</a> -->
+				<span>&nbsp|&nbsp&nbsp</span><a href="{{asset('/admin')}}" class = "log">Quản lý</a><span> &nbsp&nbsp&nbsp</span>
+				@else
+				<!-- <a href="{{asset('/quanlydiadiem')}}"> Địa Điểm Của Tôi</a> -->
+				<span>&nbsp|&nbsp&nbsp</span><a href="{{asset('/quanlydiadiem')}}" class = "log"> Địa Điểm Của Tôi</a><span> &nbsp&nbsp&nbsp</span>
+				@endif
+				
 				<span>&nbsp|&nbsp&nbsp</span><a href="{{asset('logout')}}" class = "log">Đăng Xuất</a>
 				@else
-				<span>&nbsp|&nbsp&nbsp</span><a href="{{asset('facebook/login')}}" class = "log">Đăng nhập bằng FB</a><span> &nbsp&nbsp&nbsp</span>
+				<!-- <span>&nbsp|&nbsp&nbsp</span><a href="{{asset('facebook/login')}}" class = "log">Đăng nhập bằng FB</a><span> &nbsp&nbsp&nbsp</span>
 				<span>&nbsp|&nbsp&nbsp</span><a href="{{asset('google/login')}}" class = "log">Đăng nhập bằng GG</a><span> &nbsp&nbsp&nbsp</span>
+				 -->
+
+
+
+				
+				<div class="btn-group">
+		  		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    		Đăng nhập <span class="caret"></span>
+		 		 </button>
+		  		<ul class="dropdown-menu">
+		    		<li><a href="{{asset('facebook/login')}}">Facebook</a></li>
+		    		<li><a href="{{asset('google/login')}}">Google</a></li>
+		  		</ul>
+				</div>
+
 				@endif
 			</div>
 		</div>
